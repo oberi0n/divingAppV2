@@ -1,0 +1,60 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 80px;
+}
+
+.App-header {
+  background-color: #E7EFE7;
+  height: 75px;
+  padding: 10px;
+  color: #298795;
+}
+
+h4 {
+	  color: #298795;
+	  padding: 0px;
+	  
+}
+
+
+.App-footer {
+  background-color: #E7EFE7;
+  height: 40px;
+  padding: 0px;
+  color: #298795;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-footer-title {
+  font-size: 0.9em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.sw-notification {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #eee;
+  border: solid 1px lightgray;
+  border-radius: 4px;
+}
+
+
+
+#scanner-container {
+  position: relative;
+}
+ 
+.drawingBuffer {
+  position: absolute;
+  left: 0;
+  top: 0;
+}

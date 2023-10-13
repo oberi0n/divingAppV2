@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "567679969152",
+    "project_id": "shoshone-9d593",
+    "storage_bucket": "shoshone-9d593.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:567679969152:android:1db4caf4ebb0cf23744365",
+        "android_client_info": {
+          "package_name": "com.diving.CPT"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw8xjyp9MdL0vbp8cvAAhrja5KSQP-dkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
