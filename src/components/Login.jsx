@@ -73,13 +73,13 @@ const Login = () => {
 
 <ThemeProvider theme={defaultTheme}>
     <div align="center">
-    <Paper sx={{ align: clearInterval, maxWidth: 600 }} elevation={10}>
+    <Paper sx={{ align: clearInterval, maxWidth: 600, top: 0 }} elevation={10}>
       <Container component="main" maxWidth="xs" >
       
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 0,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -89,7 +89,7 @@ const Login = () => {
           <img src={logo} className="App-logo" alt="logo" />
           
           <Typography component="h1" variant="h5">
-            Connexion
+            
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, color: '#298795' }}>
             <TextField
@@ -97,7 +97,7 @@ const Login = () => {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Adresse Email"
               name="email"
               autoComplete="email"
               autoFocus              
@@ -107,7 +107,7 @@ const Login = () => {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Mot de passe"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -118,12 +118,12 @@ const Login = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 , bgcolor: '#298795'}}
             >
-              Sign In
+              Connexion
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2" sx={{color: '#298795'}}>
-                  Forgot password?
+                  Mot de passe oublié?
                 </Link>
               </Grid>
             </Grid>
