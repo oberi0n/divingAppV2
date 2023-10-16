@@ -89,7 +89,7 @@ const Login = () => {
           <img src={logo} className="App-logo" alt="logo" />
           
           <Typography component="h1" variant="h5">
-            Connexion
+            Connexion 
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, color: '#298795' }}>
             <TextField
