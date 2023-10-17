@@ -49,7 +49,7 @@ const Login = () => {
             {'Copyright ©'+new Date().getFullYear()+' N. NOEL - '}
             <Link color="inherit" href="https://plongee-thionville.fr/">
             plongee-thionville.fr
-            </Link>{' - ' + process.env.REACT_APP_VERSION}
+            </Link>{' - v' + process.env.REACT_APP_VERSION}
             
             <br /><br />
           </Typography>
