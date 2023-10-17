@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from "../Header2";
-import SimpleBottomNavigation from "../SimpleBottomNavigation"
+import Header from "../components/Header2";
+import SimpleBottomNavigation from "../components/SimpleBottomNavigation"
 
 import { useNavigate, useLocation } from "react-router-dom";
 

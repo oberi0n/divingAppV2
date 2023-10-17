@@ -42,7 +42,7 @@ class Html5QrcodePlugin extends React.Component {
 
         // Suceess callback is required.
         if (!(this.props.qrCodeSuccessCallback )) {
-            throw "qrCodeSuccessCallback is required callback.";
+            throw new Error("qrCodeSuccessCallback is required callback.");
         }
 
         this.html5QrcodeScanner = new Html5QrcodeScanner(

@@ -102,7 +102,8 @@ class Utilisateurs extends React.Component {
 
 			if(listUser.nom.toUpperCase().startsWith(text.target.value.toUpperCase())||listUser.prenom.toUpperCase().startsWith(text.target.value.toUpperCase())){
 					return listUser;
-			}			  
+			}else
+				return listUser;	  
 		})
 		
 		this.setState({ equipments: fouf })
