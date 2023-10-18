@@ -177,7 +177,7 @@ export async function getEquipmentByTag(tag) {
 	const url = ENDPOINT + '/equipment/detail?tag=' + tag
 	return  await fetch(url, getOptions)
     .then((response) => response.json())
-    .catch((error) => console.log('Erreur','L\'équipement n\'a pas été trouvé.'))
+    .catch((error) =>  console.log('Erreur','L\'élément n\'a pas été trouvé.'))
 }
 
 export async function getUtilisateurEquipment(tag) {
@@ -195,6 +195,7 @@ export async function getUtilisateurEquipment(tag) {
 	//console.log(url);
 	return  await fetch(url, getOptions)
     .then((response) => response.json())
+	.catch((error) => console.log('Erreur','L\'élément n\'a pas été trouvé.'))
     //.catch((error) => console.log('Erreur','L\'élément n\'a pas été trouvé.'))
 }
 

@@ -50,7 +50,7 @@ class EquipmentRestitution extends React.Component{
 		
 		getEquipmentByTag(tagEquipment).then(data => {
 		 
-			
+		 if(data !== undefined){
 			if(data.dateAchat !== undefined)	
 				this._dateAchat = Moment(data.dateAchat.substring(0, 10)).format('DD/MM/YYYY');
 			else
@@ -74,7 +74,10 @@ class EquipmentRestitution extends React.Component{
 			this._statutTIV = data.statutTIV;
 			this._numeroAffiche = data.numeroAffiche;
 			this.setState({ isLoading: false });
-		})
+		 }else{
+			this.props.navigate('/error');
+		 }
+		}).catch(e => console.log(e)) 
 	}
  
     _getUtilisateurEquipment(tagEquipment){ 
