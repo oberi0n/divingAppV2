@@ -23,33 +23,37 @@ class Html5QrcodePlugin extends React.Component {
         function createConfig(props) {
             var config = {};
             if (props.fps) {
-            config.fps = props.fps;
+                config.fps = props.fps;
             }
             if (props.qrbox) {
-            config.qrbox = props.qrbox;
+                config.qrbox = props.qrbox;
             }
             if (props.aspectRatio) {
-            config.aspectRatio = props.aspectRatio;
+                config.aspectRatio = props.aspectRatio;
             }
             if (props.disableFlip !== undefined) {
-            config.disableFlip = props.disableFlip;
+                config.disableFlip = props.disableFlip;
             }
             if (props.showTorchButtonIfSupported !== undefined) {
                 config.showTorchButtonIfSupported = props.showTorchButtonIfSupported;
+            }
+            if (props.supportedScanTypes !== undefined) {
+                config.supportedScanTypes = props.supportedScanTypes;
             }
             return config;
         }
 
         var config = createConfig(this.props);
-        var verbose = this.props.verbose === true;
+        var verbose = this.props.verbose === false;
 
         // Suceess callback is required.
         if (!(this.props.qrCodeSuccessCallback )) {
             throw new Error("qrCodeSuccessCallback is required callback.");
         }
-
         this.html5QrcodeScanner = new Html5QrcodeScanner(
             qrcodeRegionId, config, verbose);
+
+
         this.html5QrcodeScanner.render(
             this.props.qrCodeSuccessCallback,
             this.props.qrCodeErrorCallback);

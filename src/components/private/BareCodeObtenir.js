@@ -1,7 +1,8 @@
 import Header from "../Header2";
 import SimpleBottomNavigation from "../SimpleBottomNavigation"
 import Html5QrcodePlugin from './Html5QrcodePlugin.jsx';
-
+import {Html5QrcodeScanType} from 'html5-qrcode';
+import {BrowserView, MobileView} from 'react-device-detect';
 import { setBorrowedEquipments} from '../../api/DivingApi'
 import React from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
@@ -55,12 +56,25 @@ class  BareCodeObtenir extends React.Component {
 			<Header />
 				<div align='center'>
 				<h4>Scanner un équipement pour l'emprunter</h4>
+				<BrowserView>
 					<Html5QrcodePlugin 
 						fps={5}
 						qrbox={250}
-						disableFlip={false}
+						disableFlip={true}
 						qrCodeSuccessCallback={this.onNewScanResult}
-						showTorchButtonIfSupported={true}/>
+						supportedScanTypes={[Html5QrcodeScanType.SCAN_TYPE_FILE]}
+						/>
+				</BrowserView>
+				<MobileView>
+					<Html5QrcodePlugin 
+						fps={5}
+						qrbox={250}
+						disableFlip={true}
+						qrCodeSuccessCallback={this.onNewScanResult}
+						showTorchButtonIfSupported={true}
+						supportedScanTypes={[Html5QrcodeScanType.SCAN_TYPE_CAMERA]}
+						/>
+				</MobileView>
 				</div>
 
 				<Dialog
