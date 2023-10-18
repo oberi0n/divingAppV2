@@ -4,6 +4,12 @@ git add *
 git commit -m "message"
 git push
 
+Note memo version:
+
+npm version patch
+npm version minor
+npm version major
+
 
 # Getting Started with Create React App
 

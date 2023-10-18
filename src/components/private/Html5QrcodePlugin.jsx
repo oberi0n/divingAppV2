@@ -34,11 +34,14 @@ class Html5QrcodePlugin extends React.Component {
             if (props.disableFlip !== undefined) {
             config.disableFlip = props.disableFlip;
             }
+            if (props.showTorchButtonIfSupported !== undefined) {
+                config.showTorchButtonIfSupported = props.showTorchButtonIfSupported;
+            }
             return config;
         }
 
         var config = createConfig(this.props);
-        var verbose = this.props.verbose === false;
+        var verbose = this.props.verbose === true;
 
         // Suceess callback is required.
         if (!(this.props.qrCodeSuccessCallback )) {
