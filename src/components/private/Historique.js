@@ -11,7 +11,6 @@ import TableRow from '@mui/material/TableRow';
 
 import { useNavigate, useLocation } from "react-router-dom";
 import { getHistoricByEquipment } from '../../api/DivingApi'
-import dateFormat from 'dateformat';
 
 
 class Historique extends React.Component {
@@ -23,13 +22,13 @@ class Historique extends React.Component {
 			isLoading: true,
 			barecode: this.props.location.state.bareCodeId
 		}
+		
 	}
 
 	componentDidMount() {
-		this._Mounted = true;
-		if (this._Mounted) {
-			this._loadHistorique(this.state.barecode); 
-		}
+		
+		this._loadHistorique(this.state.barecode); 
+		
 	}
 	 
 	 _loadHistorique(tagEquipment){
@@ -38,10 +37,9 @@ class Historique extends React.Component {
 		getHistoricByEquipment(tagEquipment).then(data => {
 			if(data === undefined){
 				this.setState({ isLoading: false })
-				//this.props.navigation.navigate("MainMenu");
 			}else{
 				data.sort(function(a,b) {
-					return (a.dateDebut < b.dateDebut) ? 1 : ((b.dateDebut < a.dateDebut) ? -1 : 0);
+					return (Number(a.idEvenement) < Number(b.idEvenement)) ? 1 : ((Number(b.idEvenement) < Number(a.idEvenement)) ? -1 : 0);
 				});
 				this.setState({ equipments: data, isLoading: false })
 			}
@@ -83,31 +81,36 @@ class Historique extends React.Component {
 							{this.state.equipments
 							  .map((row) => {
 								return (
-								  <TableRow hover role="checkbox" tabIndex={-1} key={row.idEvenement}>
+								  <TableRow hover role="checkbox" tabIndex={-1} key={row.idEvenement} sx={{ verticalAlign: 'top' }}>
 									{columns.map((column) => {
-									var value = row[column.id];
-									
-									if(column.id === 'nom' || column.id === 'prenom')
-									  value = row.utilisateur[column.id];
-									if(column.id === 'dateDebut' )
-									  value = dateFormat(row[column.id], "dd/mm/yyyy");
-									if(column.id === 'dateFin'){
-										if(value === undefined){
-									  		value = 'Non rendu'; 
+										var value = row[column.id];
+										if(column.id === 'nom' ){
+											value = row.utilisateur[column.id];
 										}
-										else{
-											value = dateFormat(row[column.id], "dd/mm/yyyy");
-										}	
-									}
-									  return (
-										<TableCell key={column.id} align={column.align}
+										else if(column.id === 'prenom'){
+											value = row.utilisateur[column.id];
+										}
+										else if(column.id === 'dateDebut' ){
+											var today = new Date(row[column.id].substring(0, 10));
+											value = today.toLocaleDateString("fr-FR");
+										}
+										else if(column.id === 'dateFin'){
+											if(value === undefined){
+												value = 'Non rendu'; 
+											}
+											else{
+												var today = new Date(row[column.id].substring(0, 10));
+												value = today.toLocaleDateString("fr-FR");
+											}	
+										}
+										
+										return (
+										<TableCell key={column.id+row.idEquipment} align={column.align}
 										>
-											{column.format && typeof value === 'number'
-											? column.format(value)
-											: value}
+											{value}
 											
 										</TableCell>
-									  );
+										);
 									})}
 								  </TableRow>
 								);
@@ -115,8 +118,6 @@ class Historique extends React.Component {
 						  </TableBody>
 						</Table>
 					</TableContainer>
-
-
 			</div>
 			<SimpleBottomNavigation />
 		</div>
