@@ -20,10 +20,7 @@ class NotFound extends React.Component{
 		}
 	}	
 	
- 
-	render() {
-		
-		
+ 	render() {
 		return (
 		<div className="App">
 			<Header />
@@ -39,16 +36,19 @@ class NotFound extends React.Component{
 						title="green iguana"
 					  />
 					<CardContent align="left">
-						<Typography gutterBottom variant="h5" component="span" >
-							Y'a comme un soucis. Vous avez scanné la boite de petits pois de vos courses, avouez !
+						<Typography gutterBottom variant="h6" component="span" >
+							Y'a comme un soucis. Vous avez scanné la boite de petits pois de vos courses. <br />
+							Plusieurs possibilités:<br />
+							<ul>
+							<li>L'équipement n'existe pas</li>
+							<li>L'équipement n'a pas été emprunté</li>
+							</ul>
 						</Typography>
 					</CardContent>
 				</Card>
 			</div>
-
 			<SimpleBottomNavigation />
 		</div>
-
 		);
 	}
 }

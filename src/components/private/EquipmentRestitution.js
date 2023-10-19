@@ -86,22 +86,26 @@ class EquipmentRestitution extends React.Component{
 	
 		
 		getUtilisateurEquipment(this.state.barecode).then(data => {			
-			this._idUtilisateur = data.idUtilisateur;
-			this._nom = data.nom;
-			this._prenom = data.prenom;
+			if(data !== undefined){
+				this._idUtilisateur = data.idUtilisateur;
+				this._nom = data.nom;
+				this._prenom = data.prenom;
 
 
-			getEquipmentUtilisateur(data.tag).then(dataE => {
+				getEquipmentUtilisateur(data.tag).then(dataE => {
 			
-				for(var i= 0; i < dataE.length; i++)
-				{
-					if(dataE[i].tag === this._tagEquipment){
-						this.setState({_dateDebut : Moment(dataE[i].dateDebut.substring(0, 10)).format('DD/MM/YYYY')})
-						//this._dateDebut = Moment(dataE[i].dateDebut.substring(0, 10)).format('DD/MM/YYYY');
-						//console.log(this._dateDebut);
+					for(var i= 0; i < dataE.length; i++)
+					{
+						if(dataE[i].tag === this._tagEquipment){
+							this.setState({_dateDebut : Moment(dataE[i].dateDebut.substring(0, 10)).format('DD/MM/YYYY')})
+							//this._dateDebut = Moment(dataE[i].dateDebut.substring(0, 10)).format('DD/MM/YYYY');
+							//console.log(this._dateDebut);
+						}
 					}
-				}
-			})
+				})
+			}else{
+				this.props.navigate('/error');
+			}
 		})
 	}
  
