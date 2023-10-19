@@ -51,12 +51,12 @@ function Header2() {
           // https://firebase.google.com/docs/reference/js/firebase.User
           //const uid = user.uid;
           //const email = user.email;
-          console.log("logged in")
+          //console.log("logged in")
         } else {
           // User is signed out
           // ...
           navigate("/");
-          console.log("user is logged out")
+          //console.log("user is logged out")
         }
       });
      

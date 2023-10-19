@@ -34,11 +34,7 @@ class EquipementsEmprunt extends React.Component {
 	}
  }
  componentDidMount() {
-	 
-	this._Mounted = true;
-    if (this._Mounted) {
-		this._loadEquipmentsEmprunt(); 
-	}
+	this._loadEquipmentsEmprunt(); 
  }
  
  _loadEquipmentsEmprunt(){
