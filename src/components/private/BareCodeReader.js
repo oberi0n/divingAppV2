@@ -32,7 +32,7 @@ class  BareCodeReader extends React.Component {
 				</BrowserView>
 				<MobileView>
 					<Html5QrcodePlugin 
-						fps={5}
+						fps={10}
 						qrbox={250}
 						disableFlip={true}
 						qrCodeSuccessCallback={this.onNewScanResult}

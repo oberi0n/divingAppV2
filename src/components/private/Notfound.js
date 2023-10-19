@@ -31,12 +31,12 @@ class NotFound extends React.Component{
 								padding: "0.1em", }} >
 					  <CardMedia
 					  	component="img"
-						sx={{ objectFit: "contain", maxHeight : "45vh"}}
+						sx={{ objectFit: "contain", maxHeight : "40vh"}}
 						image={errorLogo}
 						title="green iguana"
 					  />
 					<CardContent align="left">
-						<Typography gutterBottom variant="h6" component="span" >
+						<Typography gutterBottom variant="h7" component="span" >
 							Y'a comme un soucis. Vous avez scanné la boite de petits pois de vos courses. <br />
 							Plusieurs possibilités:<br />
 							<ul>
