@@ -30,6 +30,7 @@ class EquipementsEmprunt extends React.Component {
 	this.state = {
 		equipments: [],
 		isLoading: true,
+		isLoaded: false,
 		openDialog: false,
 	}
  }
@@ -37,6 +38,7 @@ class EquipementsEmprunt extends React.Component {
 	this._loadEquipmentsEmprunt(); 
  }
  
+
  _loadEquipmentsEmprunt(){
 	this.setState({ isLoading: true })
  	getEquipmentsEmprunt().then(data => {
@@ -48,10 +50,8 @@ class EquipementsEmprunt extends React.Component {
 		}else{
 			data.sort(function(a,b) {
 				return (a.nom > b.nom) ? 1 : ((b.nom > a.nom) ? -1 : 0);
-			});
-
+			});			
 			this.setState({ equipments: data, isLoading: false });
-
 		}
 	})
  }
@@ -82,6 +82,8 @@ _displayIconName(lbl){
 	}
 
  render() {
+	if (this.state.isLoading) return null;
+
 	const columns = [
 		{ id: 'prenom', label: 'Prénom', minWidth: 50, align: 'center' }, 
 		{ id: 'nom', label: 'Nom', minWidth: 50, align: 'center' }, 
@@ -93,10 +95,8 @@ _displayIconName(lbl){
     return (	
 	<div className="App">
 		<Header />
-		
 		<div align="center">
 			<h4>Equipements empruntés</h4>
-			
 			  <TableContainer sx={{ maxWidth: 1024,maxHeight: "69vh" }}>
 				<Table stickyHeader aria-label="sticky table">
 				  <TableHead>

@@ -35,15 +35,13 @@ class EquipmentRestitution extends React.Component{
 			barecode: this.props.location.state.bareCodeId,
 			openDialog: false,
 			_dateDebut: "",
+			equipments: [],
 		}
 	}	
 	
 	componentDidMount() {
-		this._Mounted = true;
-		if (this._Mounted) {
 			this._loadEquipmentsDetail(this.state.barecode);
 			this._getUtilisateurEquipment(this.state.barecode)
-		}
 	}
 
 	_loadEquipmentsDetail(tagEquipment){ 
@@ -83,8 +81,6 @@ class EquipmentRestitution extends React.Component{
     _getUtilisateurEquipment(tagEquipment){ 
 	
 	//Gérer les erreurs
-	
-		
 		getUtilisateurEquipment(this.state.barecode).then(data => {			
 			if(data !== undefined){
 				this._idUtilisateur = data.idUtilisateur;
@@ -124,12 +120,14 @@ class EquipmentRestitution extends React.Component{
 				return;
 		}
 	} 
- 
+
 	_handleClickOpen = () => {
 		this.setState({openDialog:true});
 	}
  
 	_handleClose_confirm = () => {
+		this.setState({openDialog:false});
+		this.setState({equipments:[]});
 		setBackEquipments(this.state.barecode, this._idUtilisateur).then(
 			this.props.navigate('/equipementsemprunt')
 		)

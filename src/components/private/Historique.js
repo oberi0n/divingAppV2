@@ -84,6 +84,7 @@ class Historique extends React.Component {
 								  <TableRow hover role="checkbox" tabIndex={-1} key={row.idEvenement} sx={{ verticalAlign: 'top' }}>
 									{columns.map((column) => {
 										var value = row[column.id];
+										var today = "";
 										if(column.id === 'nom' ){
 											value = row.utilisateur[column.id];
 										}
@@ -91,7 +92,7 @@ class Historique extends React.Component {
 											value = row.utilisateur[column.id];
 										}
 										else if(column.id === 'dateDebut' ){
-											var today = new Date(row[column.id].substring(0, 10));
+											today = new Date(row[column.id].substring(0, 10));
 											value = today.toLocaleDateString("fr-FR");
 										}
 										else if(column.id === 'dateFin'){
@@ -99,7 +100,7 @@ class Historique extends React.Component {
 												value = 'Non rendu'; 
 											}
 											else{
-												var today = new Date(row[column.id].substring(0, 10));
+												today = new Date(row[column.id].substring(0, 10));
 												value = today.toLocaleDateString("fr-FR");
 											}	
 										}

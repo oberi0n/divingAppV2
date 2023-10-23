@@ -7,7 +7,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 //Import des composants pages
 import MainMenu from "./components/MainMenu";
 import {BareCodeReaderWithRouter} from "./components/private/BareCodeReader";
-import BareCodeResult from "./components/private/BareCodeResult";
 import {EquipementsDispoWithRouter} from "./components/private/EquipementsDispo";
 
 import {EquipementsEmpruntWithRouter} from "./components/private/EquipementsEmprunt";
@@ -29,7 +28,6 @@ export default function App() {
         
         <Route exact path="/home" element={<MainMenu />} />
         <Route path="/barecodereader" element={<BareCodeReaderWithRouter />} />
-        <Route path="/barecoderesult" element={<BareCodeResult />} />
         <Route path="/equipementsdispo" element={<EquipementsDispoWithRouter />} />
         <Route path="/equipementsemprunt" element={<EquipementsEmpruntWithRouter />} />
         <Route path="/equipmentdetail" element={<EquipmentDetailWithRouter />} />

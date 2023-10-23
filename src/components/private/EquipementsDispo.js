@@ -24,7 +24,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 
+import Grid from '@mui/material/Grid';
 
 class EquipementsDispo extends React.Component {
 	
@@ -63,28 +65,20 @@ class EquipementsDispo extends React.Component {
 					return (a.libelle > b.libelle) ? 1 : ((b.libelle > a.libelle) ? -1 : 0);
 				});
 				this.setState({ equipments: data, isLoading: false });
+				
 			}
 		})
-		//alert("_loadEquipmentsDispo 3 : ");
 	}
-
-
-	
-
 
 	_handleClickOpen = () => {
 		this.setState({openDialog:true});
 	}
- 
-			
 		
 	_handleClose_confirm = () => {
 		this.props.navigate('/')
 	}
 	
 	render() {
-
-
 		const _displayIconName = (lbl) => {
 			switch (lbl) {
 				case 'Stab':
@@ -101,10 +95,9 @@ class EquipementsDispo extends React.Component {
 			}
 		}
 
-
-
 		const columns = [
-		  { id: 'libelle', label: 'Libelle', minWidth: 50 },
+			
+		  { id: 'libelle', label: 'Libelle', minWidth: 50 , align: 'center'},
 		  { id: 'marque', label: 'Marque', minWidth: 90 },
 		  { id: 'taille', label: 'Taille',  minWidth: 40, align: 'center' },
 		  { id: 'numeroAffiche', label: 'Numero affiché', minWidth: 40, align: 'center' }, 
@@ -138,16 +131,32 @@ class EquipementsDispo extends React.Component {
 								onClick={() => 	this.props.navigate('/equipmentdetail',  {	state: { bareCodeId: row.tag,}}) }>
 									{columns.map((column) => {
 									  var value = row[column.id];
+									  
+									  if(column.id === 'libelle'){
+										
+										return (
 
-									  return (
-										<TableCell key={column.id+row.idEquipment} align={column.align} >
-											{_displayIconName(row[column.id])}<br />
-											{column.format && typeof value === 'number'
-											? column.format(value)
-											: value}
+											<TableCell key={column.id+row.idEquipment} align={column.align} style={{ verticalAlign: 'top' }}>
+
+											<Grid container>
+												<Grid item xs>
+													{_displayIconName(row[column.id])}
+												</Grid>
+												<Divider orientation="vertical" flexItem />
+												<Grid item xs>
+													{ value}
+												</Grid>
+											</Grid>											
 										</TableCell>
-									  );
-									})}
+										);
+									  }
+										return (
+											<TableCell key={column.id+row.idEquipment} align={column.align} >
+												{ value}
+											</TableCell>
+										);
+										})
+									}
 								  </TableRow>
 								);
 							  })}
