@@ -73,13 +73,13 @@ const Login = () => {
 
 <ThemeProvider theme={defaultTheme}>
     <div align="center">
-    <Paper sx={{ align: clearInterval, maxWidth: 600, top: 0 }} elevation={10}>
+    <Paper sx={{ align: clearInterval, maxWidth: 600, top: 50 }} elevation={10}>
       <Container component="main" maxWidth="xs" >
       
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 0,
+            marginTop: 5,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
