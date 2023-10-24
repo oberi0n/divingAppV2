@@ -82,7 +82,7 @@ _displayIconName(lbl){
 	}
 
  render() {
-	if (this.state.isLoading) return null;
+	if (this.state.refresh) return null;
 
 	const columns = [
 		{ id: 'prenom', label: 'Prénom', minWidth: 50, align: 'center' }, 
