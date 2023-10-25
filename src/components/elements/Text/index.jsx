@@ -10,5 +10,4 @@ const index = ({children, className, ...rest}) => {
     </p>
   )
 }
-
 export default index

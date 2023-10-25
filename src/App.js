@@ -1,10 +1,8 @@
 import React from 'react';
 import "./App.css"; //Import du style globale
 
-//Import des composants basiques de navigation
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-//Import des composants pages
 import MainMenu from "./components/MainMenu";
 import {BareCodeReaderWithRouter} from "./components/private/BareCodeReader";
 import {EquipementsDispoWithRouter} from "./components/private/EquipementsDispo";
