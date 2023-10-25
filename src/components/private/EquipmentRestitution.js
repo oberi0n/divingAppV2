@@ -36,6 +36,7 @@ class EquipmentRestitution extends React.Component{
 			openDialog: false,
 			_dateDebut: "",
 			equipments: [],
+			refresh: false,
 		}
 	}	
 	
@@ -129,7 +130,7 @@ class EquipmentRestitution extends React.Component{
 		this.setState({openDialog:false});
 		this.setState({equipments:[]});
 		setBackEquipments(this.state.barecode, this._idUtilisateur).then(
-			this.props.navigate('/equipementsemprunt',  {	state: { refresh: true }})
+			this.props.navigate('/equipementsemprunt')
 		)
 	}
 	

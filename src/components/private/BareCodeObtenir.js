@@ -48,7 +48,7 @@ class  BareCodeObtenir extends React.Component {
 	}
  
 	_handleClose_confirm = () => {
-		this.props.navigate('/equipementsemprunt')		
+		this.props.navigate('/equipementsemprunt')
 	}
 
 	render() {
