@@ -127,16 +127,19 @@ class EquipmentRestitution extends React.Component{
 	}
  
 	_handleClose_confirm = () => {
-		this.setState({openDialog:false});
+		
 		this.setState({equipments:[]});
 		/*setBackEquipments(this.state.barecode, this._idUtilisateur).then(
 			this.props.navigate('/equipementsemprunt')
 		)*/
+		this.setState({isLoading:true});
 		setBackEquipments(this.state.barecode, this._idUtilisateur);
+		
 		setTimeout(() => {
 			this.props.navigate('/equipementsemprunt')
-		  }, 1000);
-		
+		  }, 500);
+		  this.setState({isLoading:false});
+		  this.setState({openDialog:false});
 		
 	}
 	
@@ -161,65 +164,66 @@ class EquipmentRestitution extends React.Component{
 		const numSerie = "Numéro de serie : " + this._numeroSerie;
 		const noNumSerie = "Pas de numero de série";
 		
+		const tableRendering = <Card sx={{ maxWidth: 1024, height: '90vh' }} >
+		{this._imageEquipment ? (
+		  <CardMedia
+			sx={{ height: 290 }}
+			image={this._imageEquipment}
+			title="green iguana"
+		  />
+		  ) : (
+			<div />
+		  )}
+		  
+		  <CardContent align="left">
+			<Typography gutterBottom variant="h5" component="span" >
+				{this._displayIconName(this._libelle)}&nbsp;{this._libelle}&nbsp;{this._marque}
+			</Typography>
+			<br /><br />
+			<Typography gutterBottom variant="body1" component="span" >
+				{this._prenom}&nbsp;{this._nom}&nbsp;a emprunté ce matériel depuis le {this.state._dateDebut}
+			</Typography>
+			<br /><br />
+			<Typography variant="body2" color="text.secondary" component="span">
+			<Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+				<Grid xs={6}>
+					{(this._numeroAffiche!==undefined)?numAffiche:noNumAffiche}
+				</Grid>
+				<Grid xs={6}>
+					{(this._dateEntretien!=='Inconnue')?dateDernEntretien:noDateDernEntretien}
+				</Grid>
+				<Grid xs={6}>
+					Taille: {this._taille}
+				</Grid>
+				<Grid xs={6}>
+					{(this._dateRequalif!=='Inconnue')?dateDernQualif:noDateDernQualif}
+				</Grid>
+				<Grid xs={6}>
+					{(this._numeroSerie!=='')?numSerie:noNumSerie}
+				</Grid>
+				<Grid xs={6}>
+					{(this._statutTIV)?statutTIV:noStatutTIV}
+				</Grid>
+				<Grid xs={6}>
+					Tag: {this._tagEquipment}
+				</Grid>
+			</Grid>
+			</Typography>
+		  </CardContent>
+		  <CardActions>
+			<Button 
+			onClick={() => 	this.props.navigate('/historique', { state: { bareCodeId: this._tagEquipment,}})} size="small">Historique</Button>
+			<Button 
+			onClick={this._handleClickOpen}
+			size="small">Restituer</Button>
+		  </CardActions>					  
+		</Card>
+
 		return (
 		<div className="App">
 			<Header />
 				<div align="center">
-					<Card sx={{ maxWidth: 1024, height: '90vh' }} >
-					{this._imageEquipment ? (
-					  <CardMedia
-						sx={{ height: 290 }}
-						image={this._imageEquipment}
-						title="green iguana"
-					  />
-					  ) : (
-						<div />
-					  )}
-					  
-					  <CardContent align="left">
-						<Typography gutterBottom variant="h5" component="span" >
-							{this._displayIconName(this._libelle)}&nbsp;{this._libelle}&nbsp;{this._marque}
-						</Typography>
-						<br /><br />
-						<Typography gutterBottom variant="body1" component="span" >
-							{this._prenom}&nbsp;{this._nom}&nbsp;a emprunté ce matériel depuis le {this.state._dateDebut}
-						</Typography>
-						<br /><br />
-						<Typography variant="body2" color="text.secondary" component="span">
-						<Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-							<Grid xs={6}>
-								{(this._numeroAffiche!==undefined)?numAffiche:noNumAffiche}
-							</Grid>
-							<Grid xs={6}>
-								{(this._dateEntretien!=='Inconnue')?dateDernEntretien:noDateDernEntretien}
-							</Grid>
-							<Grid xs={6}>
-								Taille: {this._taille}
-							</Grid>
-							<Grid xs={6}>
-								{(this._dateRequalif!=='Inconnue')?dateDernQualif:noDateDernQualif}
-							</Grid>
-							<Grid xs={6}>
-								{(this._numeroSerie!=='')?numSerie:noNumSerie}
-							</Grid>
-							<Grid xs={6}>
-								{(this._statutTIV)?statutTIV:noStatutTIV}
-							</Grid>
-							<Grid xs={6}>
-								Tag: {this._tagEquipment}
-							</Grid>
-						</Grid>
-						</Typography>
-					  </CardContent>
-					  <CardActions>
-						<Button 
-						onClick={() => 	this.props.navigate('/historique', { state: { bareCodeId: this._tagEquipment,}})} size="small">Historique</Button>
-						<Button 
-						onClick={this._handleClickOpen}
-						size="small">Restituer</Button>
-					  </CardActions>					  
-					</Card>
-
+					{(!this.state.isLoading) ? tableRendering : "Loading"}
 				</div>
 				<Dialog
 					open={this.state.openDialog}
