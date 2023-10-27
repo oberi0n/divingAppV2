@@ -129,9 +129,12 @@ class EquipmentRestitution extends React.Component{
 	_handleClose_confirm = () => {
 		this.setState({openDialog:false});
 		this.setState({equipments:[]});
-		setBackEquipments(this.state.barecode, this._idUtilisateur).then(
+		/*setBackEquipments(this.state.barecode, this._idUtilisateur).then(
 			this.props.navigate('/equipementsemprunt')
-		)
+		)*/
+		setBackEquipments(this.state.barecode, this._idUtilisateur);
+		this.props.navigate('/equipementsemprunt');
+		
 	}
 	
 	_handleClose_reject = () => {

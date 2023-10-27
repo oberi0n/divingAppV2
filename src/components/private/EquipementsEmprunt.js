@@ -132,7 +132,7 @@ class EquipementsEmprunt extends React.Component {
 				<Header />
 				<div align="center">
 					<h4>Equipements empruntés</h4>
-					{(!this.state.isLoading) ? tableRendering : ""}
+					{(!this.state.isLoading) ? tableRendering : "Loading"}
 				</div>
 				<Dialog
 					open={this.state.openDialog}
