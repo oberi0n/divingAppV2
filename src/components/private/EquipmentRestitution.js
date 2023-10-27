@@ -133,7 +133,10 @@ class EquipmentRestitution extends React.Component{
 			this.props.navigate('/equipementsemprunt')
 		)*/
 		setBackEquipments(this.state.barecode, this._idUtilisateur);
-		this.props.navigate('/equipementsemprunt');
+		setTimeout(() => {
+			this.props.navigate('/equipementsemprunt')
+		  }, 1000);
+		
 		
 	}
 	
