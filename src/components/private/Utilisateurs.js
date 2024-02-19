@@ -99,13 +99,13 @@ class Utilisateurs extends React.Component {
 		const listUser = this.state.utilisateursBis;
 
 		var fouf = listUser.filter(function(listUser) {
-
-			if(listUser.nom.toUpperCase().startsWith(text.target.value.toUpperCase())||listUser.prenom.toUpperCase().startsWith(text.target.value.toUpperCase())){
-					return listUser;
-			}else
-				return listUser;	  
+			if(text.target.value===''||listUser.nom.toUpperCase().startsWith(text.target.value.toUpperCase())||listUser.prenom.toUpperCase().startsWith(text.target.value.toUpperCase())){
+				return listUser;
+			}
+			else{
+				return null;
+			}
 		})
-		
 		this.setState({ equipments: fouf })
    }
 	
