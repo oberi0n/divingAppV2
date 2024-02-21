@@ -66,9 +66,9 @@ class UtilisateurDetails extends React.Component {
 		this.setState({ isLoading: true })
 		getEquipmentByUtilisateur(this.state.idUtilisateur).then(data => {
 			if(data !== undefined){
-				this.setState({ equipments: data, isLoading: false })
+				this.setState({ equipments: data, isLoading: false });
 			}else{
-				this.props.navigate('/obtenir',  {	state: { idUtilisateur: this.state.idUtilisateur }})		
+				this.props.navigate('/obtenir',  {	state: { idUtilisateur: this.state.id, id: this.state.idUtilisateur }})		
 			}
 		})
 	}
@@ -140,12 +140,9 @@ class UtilisateurDetails extends React.Component {
 							{this.state.equipments
 							  .map((row) => {
 								return (
-								  <TableRow hover role="checkbox" tabIndex={-1} key={row.idEquipment}
-								  //onClick={() => 	this.props.navigate('/obtenir',  {	state: { idEquipment: row.idEquipment }}) }
-								  >
+								  <TableRow hover role="checkbox" tabIndex={-1} key={row.idEquipment} >
 									{columns.map((column) => {
 									  	var value = row[column.id];
-
 									  	var today = "";
 										if(column.id === 'dateDebut' ){
 											today = new Date(row[column.id].substring(0, 10));
