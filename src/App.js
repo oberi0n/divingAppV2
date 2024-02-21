@@ -15,6 +15,8 @@ import {UtilisateursWithRouter} from "./components/private/Utilisateurs";
 import {HistoriqueWithRouter} from "./components/private/Historique";
 import {BareCodeObtenirWithRouter} from "./components/private/BareCodeObtenir";
 
+import {UtilisateurDetailsWithRouter} from "./components/private/UtilisateurDetails";
+
 import NotFound from './components/private/Notfound';
 import Login from './components/Login';
 
@@ -34,6 +36,8 @@ export default function App() {
         <Route path="/obtenir" element={<BareCodeObtenirWithRouter />} />
         <Route path="/historique" element={<HistoriqueWithRouter />} />	
         <Route path="/error" element={<NotFound />} />	
+        
+        <Route path="/utilisateurdetails" element={<UtilisateurDetailsWithRouter />} />	
 
 
         <Route path="/" element={<Login />} />	

@@ -25,6 +25,7 @@ class  BareCodeObtenir extends React.Component {
         super(props);
 		this.state = { 
 			idUtilisateur: this.props.location.state.idUtilisateur,
+			id: this.props.location.state.id,
 			openDialog: false,
 			textConfirmation: '',
 			iconValid: '',
@@ -48,7 +49,8 @@ class  BareCodeObtenir extends React.Component {
 	}
  
 	_handleClose_confirm = () => {
-		this.props.navigate('/equipementsemprunt')
+		//this.props.navigate('/equipementsemprunt')
+		this.props.navigate('/utilisateurdetails',  {	state: { idUtilisateur: this.state.id, id: this.state.idUtilisateur }}) 
 	}
 
 	render() {

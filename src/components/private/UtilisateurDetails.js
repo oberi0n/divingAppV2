@@ -9,8 +9,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import { useNavigate } from "react-router-dom";
-import { getAllUtilisateur } from '../../api/DivingApi'
+import { useNavigate, useLocation } from "react-router-dom";
+import { getEquipmentByUtilisateur, getUtilisateurById } from '../../api/DivingApi'
 
 import BugReportRoundedIcon from '@mui/icons-material/BugReportRounded';
 import BackpackIcon from '@mui/icons-material/Backpack';
@@ -23,52 +23,56 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 
 import {  createTheme, ThemeProvider } from '@mui/material/styles';
 
 
-class Utilisateurs extends React.Component {
+class UtilisateurDetails extends React.Component {
 
 	constructor(props) {
 		super(props)
 		this.searchedText = "" ;
 		this.state = {
 			equipments: [],
+			user: '',
 			isLoading: true,
 			openDialog: false,
 			utilisateursBis: [],
+			idUtilisateur: this.props.location.state.idUtilisateur,
+			id: this.props.location.state.id
 		}
+		
 	}
 
 	componentDidMount() {
 		this._Mounted = true;
 		if (this._Mounted) {
-			this._loadUtilisateurs(); 
+			this._loadUserInfo();
+			this._loadEquipmentsInit(); 
 		}
 	}
-	 
-	 _loadUtilisateurs(){
+
+	_loadUserInfo(){
 		this.setState({ isLoading: true })
-		getAllUtilisateur().then(data => {
-			if(data === undefined){
-				this._handleClickOpen();
-				
-				this.setState({ isLoading: false })
-				
-			}else{
-				//console.log('data');
-				data.sort(function(a,b) {
-					return (a.nom > b.nom) ? 1 : ((b.nom > a.nom) ? -1 : 0);
-				});
-
-				this.setState({ equipments: data, utilisateursBis: data, isLoading: false });
-
+		getUtilisateurById(this.state.id).then(data => {
+			if(data !== undefined){
+				this.setState({ user: data, isLoading: false })
 			}
 		})
-	 }
+	}
+	
 
+	_loadEquipmentsInit(){
+		this.setState({ isLoading: true })
+		getEquipmentByUtilisateur(this.state.idUtilisateur).then(data => {
+			if(data !== undefined){
+				this.setState({ equipments: data, isLoading: false })
+			}else{
+				this.props.navigate('/obtenir',  {	state: { idUtilisateur: this.state.idUtilisateur }})		
+			}
+		})
+	}
+	
 	_displayIconName(lbl){
 		switch (lbl) {
 			case 'Stab':
@@ -92,22 +96,6 @@ class Utilisateurs extends React.Component {
 	_handleClose_confirm = () => {
 		this.props.navigate('/')
 	}
-
-
-	_searchTextInputChanged(text) {
-		this.searchedText = text.target.value;
-		const listUser = this.state.utilisateursBis;
-
-		var fouf = listUser.filter(function(listUser) {
-			if(text.target.value===''||listUser.nom.toUpperCase().startsWith(text.target.value.toUpperCase())||listUser.prenom.toUpperCase().startsWith(text.target.value.toUpperCase())){
-				return listUser;
-			}
-			else{
-				return null;
-			}
-		})
-		this.setState({ equipments: fouf })
-   }
 	
 
 	render() {
@@ -121,8 +109,10 @@ class Utilisateurs extends React.Component {
 		});
 
 		const columns = [
-			{ id: 'nom', label: 'Nom', minWidth: 50, align: 'center' }, 
-			{ id: 'prenom', label: 'Prénom', minWidth: 50, align: 'center' }, 
+			{ id: 'libelle', label: 'Libelle', minWidth: 80 },
+			{ id: 'marque', label: 'Marque', minWidth: 100 },
+			{ id: 'taille', label: 'Taille', minWidth: 50, align: 'center' },
+			{ id: 'dateDebut', label: 'Depuis le', minWidth: 50, align: 'center' },
 		];
 		
 		return (	
@@ -130,20 +120,7 @@ class Utilisateurs extends React.Component {
 		<div className="App">
 			<Header />
 			<div align="center">
-				<h4>Selectionner un utilisateur</h4>
-				<Box
-					component="form"
-					sx={{
-						'& > :not(style)': { m: 1, width:"90vw", maxWidth: 1024 },
-					}}
-					noValidate
-					autoComplete="off"
-					>
-					<TextField id="outlined-search" label="Filtrer par nom ou prénom" type="search" 
-						onChange={(text) => this._searchTextInputChanged(text)}
-					/>
-					
-				</Box>
+				<h4>{this.state.user.prenom} {this.state.user.nom} a emprunté le matériel suivant:</h4>
 					<TableContainer sx={{ maxWidth: 1024,maxHeight: '69vh' }}>
 						<Table stickyHeader aria-label="sticky table">
 						  <TableHead>
@@ -160,23 +137,27 @@ class Utilisateurs extends React.Component {
 							</TableRow>
 						  </TableHead>
 						  <TableBody>
-
 							{this.state.equipments
 							  .map((row) => {
 								return (
-								  <TableRow hover role="checkbox" tabIndex={-1} key={row.idUtilisateur}
-								  //onClick={() => 	this.props.navigate('/obtenir',  {	state: { idUtilisateur: row.idUtilisateur }}) }>
-								  onClick={() => 	this.props.navigate('/utilisateurdetails',  {	state: { idUtilisateur: row.tag, id: row.idUtilisateur }}) }>
+								  <TableRow hover role="checkbox" tabIndex={-1} key={row.idEquipment}
+								  //onClick={() => 	this.props.navigate('/obtenir',  {	state: { idEquipment: row.idEquipment }}) }
+								  >
 									{columns.map((column) => {
-									  const value = row[column.id];
-									  return (
-										<TableCell key={column.id} align={column.align}
-										>
-											{column.format && typeof value === 'number'
-											? column.format(value)
-											: value}
-										</TableCell>
-									  );
+									  	var value = row[column.id];
+
+									  	var today = "";
+										if(column.id === 'dateDebut' ){
+											today = new Date(row[column.id].substring(0, 10));
+											value = today.toLocaleDateString("fr-FR");
+									  	}
+									  
+										return (
+											<TableCell key={column.id+row.idEquipment} align={column.align}>
+												{value}
+											</TableCell>
+										);
+
 									})}
 								  </TableRow>
 								);
@@ -184,7 +165,14 @@ class Utilisateurs extends React.Component {
 						  </TableBody>
 						</Table>
 					</TableContainer>
-				
+					<br /><br />
+					<Button 
+					    
+						variant="contained"
+						sx={{ mt: 3, mb: 2 , bgcolor: '#298795'}}
+						onClick={() => this.props.navigate('/obtenir',  {	state: { idUtilisateur: this.state.id, id: this.state.idUtilisateur }})}>
+          				Emprunter
+        			</Button>
 
 			</div>
 			<Dialog
@@ -212,8 +200,9 @@ class Utilisateurs extends React.Component {
 		)
 	}
 }
-export function UtilisateursWithRouter(props){
+export function UtilisateurDetailsWithRouter(props){
 	const navigate = useNavigate();
-	return (<Utilisateurs navigate={navigate}></Utilisateurs>);
+	const location = useLocation();
+	return (<UtilisateurDetails location={location} navigate={navigate}></UtilisateurDetails>);
 }
-export default Utilisateurs
+export default UtilisateurDetails
