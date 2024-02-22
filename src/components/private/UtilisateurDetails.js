@@ -65,9 +65,12 @@ class UtilisateurDetails extends React.Component {
 	_loadEquipmentsInit(){
 		this.setState({ isLoading: true })
 		getEquipmentByUtilisateur(this.state.idUtilisateur).then(data => {
+			alert(data);
 			if(data !== undefined){
+				alert("1");
 				this.setState({ equipments: data, isLoading: false });
 			}else{
+				alert("2");
 				this.props.navigate('/obtenir',  {	state: { idUtilisateur: this.state.id, id: this.state.idUtilisateur }})		
 			}
 		})
