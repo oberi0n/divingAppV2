@@ -17,8 +17,11 @@ import {BareCodeObtenirWithRouter} from "./components/private/BareCodeObtenir";
 
 import {UtilisateurDetailsWithRouter} from "./components/private/UtilisateurDetails";
 
+import {EquipmentAnalyseWithRouter} from "./components/private/EquipmentAnalyse";
+
 import NotFound from './components/private/Notfound';
 import Login from './components/Login';
+import EquipmentAnalyse from './components/private/EquipmentAnalyse';
 
 export default function App() {
   return (
@@ -35,6 +38,7 @@ export default function App() {
         <Route path="/utilisateurs" element={<UtilisateursWithRouter />} />
         <Route path="/obtenir" element={<BareCodeObtenirWithRouter />} />
         <Route path="/historique" element={<HistoriqueWithRouter />} />	
+        <Route path="/equipmentanalyse" element={<EquipmentAnalyseWithRouter />} />	
         <Route path="/error" element={<NotFound />} />	
         
         <Route path="/utilisateurdetails" element={<UtilisateurDetailsWithRouter />} />	

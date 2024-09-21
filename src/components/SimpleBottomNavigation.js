@@ -7,6 +7,7 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import EventBusyIcon from '@mui/icons-material/EventBusy';
 import GroupIcon from '@mui/icons-material/Group';
 import UndoIcon from '@mui/icons-material/Undo';
+import Search from '@mui/icons-material/Search';
 
 import Paper from '@mui/material/Paper';
 import { Link } from "react-router-dom";
@@ -40,6 +41,7 @@ export default function SimpleBottomNavigation() {
 			<BottomNavigationAction label="Emprunts" value="/equipementsemprunt" icon={<EventBusyIcon />}  component={Link} to='/equipementsemprunt'/>
 			<BottomNavigationAction label="Obtenir" value="/utilisateurs" icon={<GroupIcon />} component={Link} to='/utilisateurs'/>
 			<BottomNavigationAction label="Restitution" value="/barecodereader" icon={<UndoIcon />} component={Link} to='/barecodereader'/>
+			<BottomNavigationAction label="Analyse" value="/equipmentanalyse" icon={<Search />} component={Link} to='/equipmentanalyse'/>
         </BottomNavigation>
     </Paper>
   );
