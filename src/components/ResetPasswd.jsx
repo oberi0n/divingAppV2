@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { sendPasswordResetEmail } from "firebase/auth";
+
 import { auth } from '../firebase.config';
 import { useNavigate } from 'react-router-dom'
 
@@ -7,15 +8,16 @@ import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
+
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {  createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../logo_club.png';
 import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 
-const Login = () => {
+const ResetPasswd = () => {
     const navigate = useNavigate();
     const [setErrors] = useState('');
     //const [setLoading] = useState(false);
@@ -25,12 +27,13 @@ const Login = () => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         
-        signInWithEmailAndPassword(auth, data.get('email'), data.get('password'))
-            .then((userCredential) => {
-        
-                const user = userCredential.user;
-                navigate("/home")
-                console.log(user);
+        sendPasswordResetEmail(auth,  data.get('email'))
+
+        //signInWithEmailAndPassword(auth, data.get('email'), data.get('password'))
+            .then(() => {
+              console.log("test1");
+                navigate("/resetOk")
+                console.log("test2");
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -89,7 +92,7 @@ const Login = () => {
           <img src={logo} className="App-logo" alt="logo" />
           
           <Typography component="h1" variant="h5">
-            Connexion 
+            Demande d'un nouveau mot de passe 
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, color: '#298795' }}>
             <TextField
@@ -102,28 +105,18 @@ const Login = () => {
               autoComplete="email"
               autoFocus              
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Mot de passe"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 , bgcolor: '#298795'}}
             >
-              Connexion
+              Réinitialiser mon mot de passe
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="/resetpasswd" variant="body2" sx={{color: '#298795'}}>
-                  Mot de passe oublié?
+                <Link href="/" variant="body2" sx={{color: '#298795'}}>
+                  Retour
                 </Link>
               </Grid>
             </Grid>
@@ -140,4 +133,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default ResetPasswd

@@ -21,6 +21,9 @@ import {EquipmentAnalyseWithRouter} from "./components/private/EquipmentAnalyse"
 
 import NotFound from './components/private/Notfound';
 import Login from './components/Login';
+import ResetPasswdValid from './components/ResetPasswdValid';
+import ResetPasswd from './components/ResetPasswd';
+
 
 
 export default function App() {
@@ -43,7 +46,9 @@ export default function App() {
         
         <Route path="/utilisateurdetails" element={<UtilisateurDetailsWithRouter />} />	
 
-
+        <Route path="/resetpasswd" element={<ResetPasswd />} />	
+        <Route path="/resetOk" element={<ResetPasswdValid />} />	
+        
         <Route path="/" element={<Login />} />	
         
       </Routes>
