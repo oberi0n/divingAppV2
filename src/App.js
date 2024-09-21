@@ -21,7 +21,7 @@ import {EquipmentAnalyseWithRouter} from "./components/private/EquipmentAnalyse"
 
 import NotFound from './components/private/Notfound';
 import Login from './components/Login';
-import EquipmentAnalyse from './components/private/EquipmentAnalyse';
+
 
 export default function App() {
   return (

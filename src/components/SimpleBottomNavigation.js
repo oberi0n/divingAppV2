@@ -7,7 +7,7 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import EventBusyIcon from '@mui/icons-material/EventBusy';
 import GroupIcon from '@mui/icons-material/Group';
 import UndoIcon from '@mui/icons-material/Undo';
-import Search from '@mui/icons-material/Search';
+
 
 import Paper from '@mui/material/Paper';
 import { Link } from "react-router-dom";
@@ -35,13 +35,13 @@ export default function SimpleBottomNavigation() {
   return (
 	
    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={10}>
-   		<BottomNavigation value={value} onChange={handleChange} showLabels={true} >
+   		<BottomNavigation value={value} onChange={handleChange} showLabels={true} sx={{ position: 'fixed', bottom: 0, width: 1.0 }} >
    			<BottomNavigationAction label="Accueil" value="/home" icon={<HomeIcon />} component={Link} to='/home'/>
 			<BottomNavigationAction label="Disponibles" value="/equipementsdispo" icon={<EventAvailableIcon /> } component={Link} to='/equipementsdispo'/>                
 			<BottomNavigationAction label="Emprunts" value="/equipementsemprunt" icon={<EventBusyIcon />}  component={Link} to='/equipementsemprunt'/>
 			<BottomNavigationAction label="Obtenir" value="/utilisateurs" icon={<GroupIcon />} component={Link} to='/utilisateurs'/>
 			<BottomNavigationAction label="Restitution" value="/barecodereader" icon={<UndoIcon />} component={Link} to='/barecodereader'/>
-			<BottomNavigationAction label="Analyse" value="/equipmentanalyse" icon={<Search />} component={Link} to='/equipmentanalyse'/>
+			
         </BottomNavigation>
     </Paper>
   );

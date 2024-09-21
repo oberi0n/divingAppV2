@@ -16,6 +16,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from 'react-router-dom'
 
 import LogoutIcon from '@mui/icons-material/LogoutRounded';
+import Search from '@mui/icons-material/Search';
 import { IconButton } from '@mui/material';
 import {  createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -33,6 +34,13 @@ function Header2() {
 			console.log(error)
         });
 	}
+
+  const handleAnalyse = () => {               
+    
+    navigate("/equipmentanalyse");
+    console.log("Analyse")
+    
+}
 
 
   const defaultTheme = createTheme({
@@ -88,6 +96,13 @@ function Header2() {
             }} >
             Matériel
           </Typography>
+          <IconButton color="primary" aria-label="Logout"  onClick={() => {
+            handleAnalyse();
+          }}>
+          <Search sx={{ color: '#E345J' }}/>
+          
+          </IconButton>
+
           <IconButton color="primary" aria-label="Logout"  onClick={() => {
             handleLogout();
           }}>
