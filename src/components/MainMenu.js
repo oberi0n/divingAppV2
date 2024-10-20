@@ -20,7 +20,7 @@ export default function MainMenu(){
 			<Paper sx={{ maxWidth: 1024,overflow: 'hidden' }} elevation={0}>
 				<CardMedia
 					sx={{ height: "80vh" }}
-					image="./assets/bloc.jpg"
+					image="./assets/underwater.jpg"
 					title="accueil"
 				/>
 			</Paper>			
