@@ -20,7 +20,7 @@ export default function SimpleBottomNavigation() {
 
 	const BottomNavigationAction = styled(MuiBottomNavigationAction)(`
 		color: #298795;
-		top: -10px;
+		top: -5px;
 		&.Mui-selected {
 	  		color: #953729;
 		}
