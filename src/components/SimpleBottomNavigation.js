@@ -20,6 +20,7 @@ export default function SimpleBottomNavigation() {
 
 	const BottomNavigationAction = styled(MuiBottomNavigationAction)(`
 		color: #298795;
+		top: -20px;
 		&.Mui-selected {
 	  		color: #953729;
 		}
@@ -34,8 +35,8 @@ export default function SimpleBottomNavigation() {
   
   return (
 	
-   <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={10}>
-   		<BottomNavigation value={value} onChange={handleChange} showLabels={true} sx={{ position: 'fixed', bottom: 0, width: 1.0 }} >
+   <Paper sx={{ position: 'fixed', bottom: 10, left: 0, right: 0 }} elevation={10}>
+   		<BottomNavigation value={value} onChange={handleChange} showLabels={true} sx={{ position: 'fixed', bottom: 10, width: 1.0 }} >
    			<BottomNavigationAction label="Accueil" value="/home" icon={<HomeIcon />} component={Link} to='/home'/>
 			<BottomNavigationAction label="Disponibles" value="/equipementsdispo" icon={<EventAvailableIcon /> } component={Link} to='/equipementsdispo'/>                
 			<BottomNavigationAction label="Emprunts" value="/equipementsemprunt" icon={<EventBusyIcon />}  component={Link} to='/equipementsemprunt'/>
