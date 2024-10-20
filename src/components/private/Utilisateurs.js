@@ -144,7 +144,7 @@ class Utilisateurs extends React.Component {
 					/>
 					
 				</Box>
-					<TableContainer sx={{ maxWidth: 1024,maxHeight: '69vh' }}>
+					<TableContainer sx={{ maxWidth: 1024,maxHeight: '63vh' }}>
 						<Table stickyHeader aria-label="sticky table">
 						  <TableHead>
 							<TableRow>
