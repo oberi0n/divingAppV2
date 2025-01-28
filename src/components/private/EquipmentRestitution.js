@@ -187,7 +187,6 @@ class EquipmentRestitution extends React.Component{
 				display: 'flex', // Active Flexbox
 				justifyContent: 'center', // Centre horizontalement
 				gap: 2, // Ajoute un espace entre les boutons
-				marginTop: 2, // Optionnel : espace au-dessus des boutons
 			  }}>
 				<Button
 					onClick={() =>

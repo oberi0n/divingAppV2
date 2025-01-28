@@ -106,7 +106,6 @@ class EquipmentDetail extends React.Component {
 							<div />
 						)}
 						<CardContent align="left">
-
 							<Typography gutterBottom variant="h5" component="div">
 								{this._displayIconName(this._libelle)}&nbsp;{this._libelle}&nbsp;{this._marque}
 							</Typography>
@@ -115,7 +114,7 @@ class EquipmentDetail extends React.Component {
 								display: 'flex', // Active Flexbox
 								justifyContent: 'center', // Centre horizontalement
 								gap: 2, // Ajoute un espace entre les boutons
-								marginTop: 2, // Optionnel : espace au-dessus des boutons
+								
 							  }}>
 							<Button
 								onClick={() => this.props.navigate('/historique', { state: { bareCodeId: this._tagEquipment, } })}
