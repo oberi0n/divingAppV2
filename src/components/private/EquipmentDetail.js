@@ -14,7 +14,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import HistoryIcon from '@mui/icons-material/History';
 import BugReportRoundedIcon from '@mui/icons-material/BugReportRounded';
 import BackpackIcon from '@mui/icons-material/Backpack';
 import EarbudsIcon from '@mui/icons-material/Earbuds';
@@ -106,9 +106,33 @@ class EquipmentDetail extends React.Component {
 							<div />
 						)}
 						<CardContent align="left">
+
 							<Typography gutterBottom variant="h5" component="div">
 								{this._displayIconName(this._libelle)}&nbsp;{this._libelle}&nbsp;{this._marque}
 							</Typography>
+							<CardActions
+							sx={{
+								display: 'flex', // Active Flexbox
+								justifyContent: 'center', // Centre horizontalement
+								gap: 2, // Ajoute un espace entre les boutons
+								marginTop: 2, // Optionnel : espace au-dessus des boutons
+							  }}>
+							<Button
+								onClick={() => this.props.navigate('/historique', { state: { bareCodeId: this._tagEquipment, } })}
+								size="small"
+								variant="contained"
+								startIcon={<HistoryIcon />}
+								color="primary"
+								sx={{
+									borderRadius: '20px',
+									fontWeight: 'bold',
+									backgroundColor: '#298795', // Bleu-vert élégant
+									color: '#ffffff', // Texte blanc pour un bon contraste
+									'&:hover': {
+									backgroundColor: '#226d7b', // Une teinte légèrement plus sombre au survol
+									},
+								}}>Historique</Button>
+							</CardActions>
 							<Typography variant="body2" color="text.secondary">
 								Taille: {this._taille}
 								<br />
@@ -126,11 +150,7 @@ class EquipmentDetail extends React.Component {
 								Tag: {this._tagEquipment}
 							</Typography>
 						</CardContent>
-						<CardActions>
-							<Button
-								onClick={() => this.props.navigate('/historique', { state: { bareCodeId: this._tagEquipment, } })}
-								size="small">Historique</Button>
-						</CardActions>
+						
 					</Card>
 				</div>
 				<SimpleBottomNavigation />
