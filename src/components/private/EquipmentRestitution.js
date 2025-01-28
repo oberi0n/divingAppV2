@@ -18,6 +18,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
+import HistoryIcon from '@mui/icons-material/History';
+import UndoIcon from '@mui/icons-material/Undo';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2';
 
@@ -176,14 +178,55 @@ class EquipmentRestitution extends React.Component{
 		  )}
 		  
 		  <CardContent align="left">
+		  
 			<Typography gutterBottom variant="h5" component="span" >
 				{this._displayIconName(this._libelle)}&nbsp;{this._libelle}&nbsp;{this._marque}
 			</Typography>
-			<br /><br />
+			<CardActions>
+				<Button
+					onClick={() =>
+					this.props.navigate('/historique', { state: { bareCodeId: this._tagEquipment } })
+					}
+					size="small"
+					variant="contained"
+					startIcon={<HistoryIcon />}
+					color="primary"
+					sx={{
+						borderRadius: '20px',
+						fontWeight: 'bold',
+						backgroundColor: '#298795', // Bleu-vert élégant
+						color: '#ffffff', // Texte blanc pour un bon contraste
+						'&:hover': {
+						  backgroundColor: '#226d7b', // Une teinte légèrement plus sombre au survol
+						},
+					  }}
+				>
+					Historique
+				</Button>
+				<Button
+					onClick={this._handleClickOpen}
+					size="small"
+					variant="outlined"
+					startIcon={<UndoIcon />}
+					color="error"
+					sx={{
+						borderRadius: '20px',
+						fontWeight: 'bold',
+						backgroundColor: '#d32f2f', // Rouge vif mais lisible
+						color: '#ffffff', // Texte blanc pour le contraste
+						'&:hover': {
+						  backgroundColor: '#b71c1c', // Rouge légèrement plus foncé au survol
+						},
+					  }}
+				>
+					Restituer
+				</Button>
+				
+  		    </CardActions>		
 			<Typography gutterBottom variant="body1" component="span" >
 				{this._prenom}&nbsp;{this._nom}&nbsp;a emprunté ce matériel depuis le {this.state._dateDebut}
 			</Typography>
-			<br /><br />
+			<br />
 			<Typography variant="body2" color="text.secondary" component="span">
 			<Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
 				<Grid xs={6}>
@@ -210,13 +253,7 @@ class EquipmentRestitution extends React.Component{
 			</Grid>
 			</Typography>
 		  </CardContent>
-		  <CardActions>
-			<Button 
-			onClick={() => 	this.props.navigate('/historique', { state: { bareCodeId: this._tagEquipment,}})} size="small">Historique</Button>
-			<Button 
-			onClick={this._handleClickOpen}
-			size="small">Restituer</Button>
-		  </CardActions>					  
+		  			  
 		</Card>
 
 		return (
