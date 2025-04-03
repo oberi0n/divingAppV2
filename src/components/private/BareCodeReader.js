@@ -25,7 +25,7 @@ class  BareCodeReader extends React.Component {
 					<Html5QrcodePlugin 
 						fps={5}
 						qrbox={250}
-						disableFlip={true}
+						disableFlip={false}
 						qrCodeSuccessCallback={this.onNewScanResult}
 						supportedScanTypes={[Html5QrcodeScanType.SCAN_TYPE_FILE]}
 						/>
