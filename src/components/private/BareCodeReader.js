@@ -17,7 +17,8 @@ class  BareCodeReader extends React.Component {
 		
 		Html5Qrcode.getCameras().then(devices => {
 			console.log('devices: ' + devices);
-			alert('devices: ' + devices);
+			alert('devices: ' + Object.keys(devices));
+			alert('devices: ' + Object.values(devices));
 			/**
 			 * devices would be an array of objects of type:
 			 * { id: "id", label: "label" }
