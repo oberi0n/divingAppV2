@@ -15,16 +15,16 @@ class  BareCodeReader extends React.Component {
         // This binding is necessary to make `this` work in the callback.
         this.onNewScanResult = this.onNewScanResult.bind(this);
 		
-		Html5Qrcode.getCameras().then(devices => {
+		/*Html5Qrcode.getCameras().then(devices => {
 			console.log('devices: ' + devices);
 			alert('devices: ' + Object.keys(devices));
 			alert('devices: ' + Object.entries(devices));
 
 			alert('devices0 test : ' + devices[0].label);
 			alert('devices1 test : ' + devices[1].label);
-			/*let entries = Object.entries(devices).map(([key, value]) => `${key}: ${JSON.stringify(value)}`).join("\n");
+			let entries = Object.entries(devices).map(([key, value]) => `${key}: ${JSON.stringify(value)}`).join("\n");
 
-			alert(entries);*/
+			alert(entries);
 
 			const found = devices.find(item => item.label.includes("back"));
 
@@ -33,7 +33,7 @@ class  BareCodeReader extends React.Component {
 		  }).catch(err => {
 			console.log(err);
 			alert(err);
-		  });
+		  });*/
     }
 
 
@@ -49,6 +49,7 @@ class  BareCodeReader extends React.Component {
 						disableFlip={false}
 						qrCodeSuccessCallback={this.onNewScanResult}
 						supportedScanTypes={[Html5QrcodeScanType.SCAN_TYPE_FILE]}
+						
 						/>
 				</BrowserView>
 				<MobileView>
