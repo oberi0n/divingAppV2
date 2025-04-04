@@ -19,7 +19,7 @@ class  BareCodeReader extends React.Component {
 	render() {
         return (<div className="App">		
 			<Header />
-			<div align='center'>
+			<div align='center' height='100px'>
 				<h4>Scanner un équipement pour le rendre</h4>
 				<BrowserView>
 					<Html5QrcodePlugin 
@@ -40,6 +40,7 @@ class  BareCodeReader extends React.Component {
 						supportedScanTypes={[Html5QrcodeScanType.SCAN_TYPE_CAMERA]}
 						/>
 				</MobileView>
+				
 				</div>
 			
 				<SimpleBottomNavigation />
