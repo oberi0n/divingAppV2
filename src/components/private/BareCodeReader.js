@@ -1,7 +1,7 @@
 import Header from "../Header2";
 import SimpleBottomNavigation from "../SimpleBottomNavigation"
 import Html5QrcodePlugin from './Html5QrcodePlugin.jsx';
-import {Html5QrcodeScanType} from 'html5-qrcode';
+import {Html5QrcodeScanType, Html5Qrcode} from 'html5-qrcode';
 
 import {BrowserView, MobileView} from 'react-device-detect';
 import React from 'react';
@@ -16,7 +16,8 @@ class  BareCodeReader extends React.Component {
         this.onNewScanResult = this.onNewScanResult.bind(this);
 		
 		Html5Qrcode.getCameras().then(devices => {
-			console.log(devices);
+			console.log('devices: ' + devices);
+			alert('devices: ' + devices);
 			/**
 			 * devices would be an array of objects of type:
 			 * { id: "id", label: "label" }
@@ -26,7 +27,8 @@ class  BareCodeReader extends React.Component {
 			  // .. use this to start scanning.
 			//}
 		  }).catch(err => {
-			// handle err
+			console.log(err);
+			alert(err);
 		  });
     }
 
