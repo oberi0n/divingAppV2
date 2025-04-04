@@ -15,20 +15,19 @@ class  BareCodeReader extends React.Component {
         // This binding is necessary to make `this` work in the callback.
         this.onNewScanResult = this.onNewScanResult.bind(this);
 		
-/*		Html5Qrcode.getCameras().then(devices => {
+		Html5Qrcode.getCameras().then(devices => {
 			console.log('devices: ' + devices);
 			alert('devices: ' + Object.keys(devices));
 			alert('devices: ' + Object.entries(devices));
 
-			for (let key in devices) {
-				alert(key, devices[key]);
-			}
-
+			Object.entries(devices).forEach(([key, value]) => {
+				alert(`${key}:`, value);
+			});
 		
 		  }).catch(err => {
 			console.log(err);
 			alert(err);
-		  });*/
+		  });
     }
 
 	render() {
