@@ -25,7 +25,11 @@ class  BareCodeReader extends React.Component {
 			/*let entries = Object.entries(devices).map(([key, value]) => `${key}: ${JSON.stringify(value)}`).join("\n");
 
 			alert(entries);*/
-		
+
+			const found = devices.find(item => item.label.includes("back"));
+
+			alert(found ? found.id : "Aucun résultat");
+
 		  }).catch(err => {
 			console.log(err);
 			alert(err);
