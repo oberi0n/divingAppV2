@@ -20,15 +20,16 @@ class  BareCodeReader extends React.Component {
 			alert('devices: ' + Object.keys(devices));
 			alert('devices: ' + Object.entries(devices));
 
-			Object.entries(devices).forEach(([key, value]) => {
-				alert(`${key}:`, value);
-			});
+			let entries = Object.entries(devices).map(([key, value]) => `${key}: ${JSON.stringify(value)}`).join("\n");
+
+			alert(entries);
 		
 		  }).catch(err => {
 			console.log(err);
 			alert(err);
 		  });
     }
+
 
 	render() {
         return (<div className="App">		
